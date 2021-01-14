@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { OrderPayload } from "./Orders/types";
+
 const api = axios.create({
   baseURL: "http://localhost:8080"
 });
@@ -12,4 +14,8 @@ export function fetchProducts() {
 
 export function fetchLocalMapBox(local: string) {
   return api.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${local}.json?access_token=${mapboxToken}`)
+};
+
+export function saveOrder(payload: OrderPayload) {
+  return api.post("/orders", payload);
 };
